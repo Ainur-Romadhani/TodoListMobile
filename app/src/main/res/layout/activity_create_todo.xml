@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateTodo">
+
+    <TextView
+        android:text = "Form Todo"
+        android:layout_width="wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/textview"
+        android:textSize = "35dp"
+        android:layout_alignParentTop = "true"
+        android:layout_centerHorizontal = "true" />
+
+    <TextView
+        android:text = "Name"
+        android:layout_width="wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/lable_nama"
+        android:textSize = "14dp"
+        android:layout_below="@+id/textview"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:background="@drawable/rounded_edittext"
+        android:layout_below="@+id/lable_nama"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:hint="Isi Disini"
+        android:textColorHint="@color/cardview_shadow_start_color"
+        android:id = "@+id/namecreate"
+        android:layout_centerHorizontal = "true" />
+
+    <TextView
+        android:text = "Start_date"
+        android:layout_width="wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/lable_start"
+        android:textSize = "14dp"
+        android:layout_below="@+id/namecreate"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:background="@drawable/rounded_edittext"
+        android:layout_below="@+id/lable_start"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:hint="Isi Disini"
+        android:textColorHint="@color/cardview_shadow_start_color"
+        android:id = "@+id/startcreate"
+        android:inputType = "date" />
+
+    <TextView
+        android:text = "End_date"
+        android:layout_width="wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/lable_end"
+        android:textSize = "14dp"
+        android:layout_below="@+id/startcreate"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:background="@drawable/rounded_edittext"
+        android:layout_below="@+id/lable_end"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:hint="Isi Disini"
+        android:textColorHint="@color/cardview_shadow_start_color"
+        android:id = "@+id/end_datecreate"
+        android:inputType = "date" />
+
+    <TextView
+        android:text = "Proggress"
+        android:layout_width="wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/lable_proggress"
+        android:textSize = "14dp"
+        android:layout_below="@+id/end_datecreate"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:background="@drawable/rounded_edittext"
+        android:layout_below="@+id/lable_proggress"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:hint="Isi Disini"
+        android:textColorHint="@color/cardview_shadow_start_color"
+        android:id = "@+id/proggresscreate"
+        android:inputType = "number" />
+
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/proggresscreate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/holo_red_dark"
+        android:text="Submit"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>
