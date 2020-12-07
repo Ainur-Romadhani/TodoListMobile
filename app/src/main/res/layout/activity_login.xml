@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/purple_200" />
+            android:background="@drawable/background_gradient" />
 
         <ImageView
             android:layout_weight="1"
@@ -29,7 +29,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_centerHorizontal="true"
-        android:background="@color/white"
+        android:background="@drawable/background_white"
         android:padding="20dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -58,12 +58,13 @@
             android:drawablePadding="20dp"
             android:drawableRight="@drawable/ic_person"
             android:hint="******"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/login"
             android:textColor="#FFF"
-            android:background="@color/purple_200"
+            android:background="@drawable/rec_gradient"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
             android:text="Login"
@@ -73,7 +74,7 @@
             android:id="@+id/registrasi"
             android:layout_marginTop="10dp"
             android:textColor="#FFF"
-            android:background="@color/black"
+            android:background="@drawable/rec_gradient_fb"
             android:textAllCaps="false"
             android:text="Register"
             android:layout_width="match_parent"

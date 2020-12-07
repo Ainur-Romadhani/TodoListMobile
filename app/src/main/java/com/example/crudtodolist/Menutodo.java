@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,9 +21,11 @@ import com.example.crudtodolist.Model.Todo;
 import com.example.crudtodolist.Network.Api;
 import com.example.crudtodolist.Network.RetrofitClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.tapadoo.alerter.Alerter;
 
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,6 +47,7 @@ public class Menutodo extends AppCompatActivity {
         create = (ImageButton)findViewById(R.id.createtodo);
         tong = (ImageButton)findViewById(R.id.tongsampah);
         emailtodo.setText(getIntent().getStringExtra("email"));
+        service = RetrofitClient.createService(Api.class);
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,18 +65,29 @@ public class Menutodo extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        SweetAlertDialog pDialog = new SweetAlertDialog(Menutodo.this,SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Tunggu Sebentar");
+        pDialog.setCancelable(false);
+        pDialog.show();
 
-        service = RetrofitClient.createService(Api.class);
         call = service.todoid(getIntent().getStringExtra("id"));
         call.enqueue(new Callback<List<Todo>>() {
             @Override
             public void onResponse(Call<List<Todo>> call, Response<List<Todo>> response) {
                 if (response.isSuccessful()){
                     IsiData(response.body());
+                    pDialog.dismiss();
                 }
                 else {
                     if (response.code()== 401){
-                        Toast.makeText(Menutodo.this,"Data tidak ada",Toast.LENGTH_SHORT).show();
+                        Alerter.create(Menutodo.this)
+                                .setTitle("Data Tidak Ada !!")
+                                .setBackgroundColor(R.color.red_btn_bg_pressed_color)
+                                .setIcon(R.drawable.ic_notifications)
+                                .setDuration(5000)
+                                .show();
+                        pDialog.dismiss();
                     }
                 }
 

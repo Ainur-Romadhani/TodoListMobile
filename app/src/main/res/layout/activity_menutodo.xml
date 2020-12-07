@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="6dp"
     tools:context=".Menutodo">
+
 <RelativeLayout
+    android:background="@drawable/gradient"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:layout_marginTop="20dp">
+    android:layout_height="120dp">
 
     <TextView
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="#fff"
         android:layout_width="100dp"
+        android:layout_marginTop="18dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:textSize="15dp"
         android:text="Todo List" />
     <TextView
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="#fff"
+        android:layout_marginTop="18dp"
         android:id="@+id/emailtodo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,6 +53,5 @@
     <ListView
         android:id="@+id/todolist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="130dp"/>
-</RelativeLayout>
+        android:layout_height="match_parent"/>
+</LinearLayout>

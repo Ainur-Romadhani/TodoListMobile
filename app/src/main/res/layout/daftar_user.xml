@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/background_white"
     android:id="@+id/layout_daftar_user">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
+        app:cardCornerRadius="10dp"
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_margin="5dp"
@@ -21,9 +23,12 @@
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:background="@drawable/rec_gradient_fb"
             android:text="Todo List"/>
         <TextView
             android:id="@+id/iduser"
+            android:fontFamily="@font/roboto_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -34,6 +39,7 @@
             app:layout_constraintTop_toTopOf="@+id/cardView" />
 
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="34dp"
@@ -42,6 +48,7 @@
             android:textSize="16dp" />
 
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="58dp"
@@ -51,6 +58,7 @@
 
 
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/textemailuser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,6 +68,7 @@
             android:textSize="16dp" />
 
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/textnamauser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,6 +78,7 @@
             android:textSize="16dp" />
 
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/textiduser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -115,4 +125,4 @@
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

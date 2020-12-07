@@ -2,6 +2,7 @@ package com.example.crudtodolist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,9 +13,11 @@ import com.example.crudtodolist.Adapter.TongAdapter;
 import com.example.crudtodolist.Model.Todo;
 import com.example.crudtodolist.Network.Api;
 import com.example.crudtodolist.Network.RetrofitClient;
+import com.tapadoo.alerter.Alerter;
 
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +39,7 @@ public class Tong extends AppCompatActivity {
         tonglist = (ListView)findViewById(R.id.tonglist);
         restoreall =(ImageButton)findViewById(R.id.restoreall);
         deleteall = (ImageButton)findViewById(R.id.deleteall);
+        api = RetrofitClient.createService(Api.class);
 
         restoreall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,17 +76,29 @@ public class Tong extends AppCompatActivity {
             }
         });
 
-        api = RetrofitClient.createService(Api.class);
+        SweetAlertDialog pDialog = new SweetAlertDialog(Tong.this,SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Tunggu Sebentar");
+        pDialog.setCancelable(false);
+        pDialog.show();
+
         call = api.tongtodo(getIntent().getStringExtra("userid"));
         call.enqueue(new Callback<List<Todo>>() {
             @Override
             public void onResponse(Call<List<Todo>> call, Response<List<Todo>> response) {
                 if (response.isSuccessful()){
                     IsiData(response.body());
+                    pDialog.dismiss();
                 }
                 else {
                     if (response.code()== 401){
-                        Toast.makeText(Tong.this,"Data tidak ada",Toast.LENGTH_SHORT).show();
+                        Alerter.create(Tong.this)
+                                .setTitle("Data Tidak Ada !!")
+                                .setBackgroundColor(R.color.red_btn_bg_pressed_color)
+                                .setIcon(R.drawable.ic_notifications)
+                                .setDuration(5000)
+                                .show();
+                        pDialog.dismiss();
                     }
                 }
             }
