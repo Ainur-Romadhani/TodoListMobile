@@ -29,11 +29,14 @@ public class EditTodo extends AppCompatActivity {
     Button edit;
     Api api;
     Call<ResponseBody> call;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_todo);
+        sharedPrefManager = new SharedPrefManager(this);
+        String emailuser = sharedPrefManager.getSpEmail();
 
         edit=(Button)findViewById(R.id.edittodo);
         id_todos=(TextView)findViewById(R.id.id_todos);
@@ -94,7 +97,7 @@ public class EditTodo extends AppCompatActivity {
                         editname.getText().toString(),
                         editstart.getText().toString(),
                         editend.getText().toString(),
-                        editproggres.getText().toString());
+                        editproggres.getText().toString(),emailuser);
 
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override

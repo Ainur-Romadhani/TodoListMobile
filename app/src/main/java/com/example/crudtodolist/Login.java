@@ -102,5 +102,9 @@ public class Login extends AppCompatActivity {
                 });
             }
         });
+        if (sharedPrefManager.getSPCekLogin()){
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            finish();
+        }
     }
 }

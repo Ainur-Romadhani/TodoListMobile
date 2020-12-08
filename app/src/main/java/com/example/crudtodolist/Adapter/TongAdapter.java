@@ -64,7 +64,7 @@ public class TongAdapter extends BaseAdapter {
         TextView end = convertView.findViewById(R.id.end);
         TextView idtodos = convertView.findViewById(R.id.idtodos);
         TextView proggress = convertView.findViewById(R.id.proggress);
-        TextView createby = convertView.findViewById(R.id.createby);
+        TextView delete_by = convertView.findViewById(R.id.delete_by);
         ImageButton restore = convertView.findViewById(R.id.btnrestore);
         ImageButton delete = convertView.findViewById(R.id.btndelper);
         userid.setText(todo.getUser_id());
@@ -72,7 +72,7 @@ public class TongAdapter extends BaseAdapter {
         start.setText(todo.getStart_date());
         end.setText(todo.getEnd_date());
         proggress.setText(todo.getProggress());
-        createby.setText(todo.getCreate_by());
+        delete_by.setText(todo.getDelete_by());
         idtodos.setText(todo.getId_todos());
         api = RetrofitClient.createService(Api.class);
         restore.setOnClickListener(new View.OnClickListener() {

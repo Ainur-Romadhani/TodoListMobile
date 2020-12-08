@@ -103,9 +103,9 @@
             android:layout_height="20dp"
             android:textSize="15dp"
             android:layout_marginLeft="10dp"
-            android:text="Create_by"/>
+            android:text="Delete_by"/>
         <TextView
-            android:id="@+id/createby"
+            android:id="@+id/delete_by"
             android:layout_marginTop="120dp"
             android:layout_width="wrap_content"
             android:layout_height="20dp"

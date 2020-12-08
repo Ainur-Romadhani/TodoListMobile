@@ -40,7 +40,7 @@ public class SharedPrefManager {
         return sp.getBoolean(SP_CEK_LOGIN, false);
     }
 
-    public String getSPToken(){
+    public String getSpEmail(){
         return sp.getString(SP_EMAIL, "");
     }
 

@@ -14,7 +14,7 @@
         android:background="@drawable/gradient">
 
         <TextView
-            android:id="@+id/nameuser"
+            android:id="@+id/emailuser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
@@ -24,18 +24,15 @@
             android:textColor="#ffff"
             android:textSize="22dp"></TextView>
 
-        <TextView
-            android:id="@+id/emailuser"
+        <ImageButton
+            android:id="@+id/BtnLogout"
+            android:src="@drawable/ic_baseline_power_settings_new_24"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="18dp"
+            android:layout_toRightOf="@id/emailuser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/nama"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Example@okejos.jos"
-            android:textColor="#ffff"
-            android:textSize="16dp"></TextView>
+            android:background="@color/white"/>
 
 
     </RelativeLayout>

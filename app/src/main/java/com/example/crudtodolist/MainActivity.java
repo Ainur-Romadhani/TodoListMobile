@@ -9,7 +9,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     private UserAdapter UserAdapter;
     private ListView listView;
-    TextView emailuser,nameuser;
-    Call<List<User>> calll;
+    TextView emailuser;
+    ImageButton BtnLogout;
     Call<List<User>> call;
     Api service;
     SharedPrefManager sharedPrefManager;
@@ -45,26 +47,40 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sharedPrefManager = new SharedPrefManager(this);
+        String email = sharedPrefManager.getSpEmail();
 
         emailuser = (TextView)findViewById(R.id.emailuser);
-        nameuser = (TextView)findViewById(R.id.nameuser);
+        BtnLogout = (ImageButton)findViewById(R.id.BtnLogout);
         listView = (ListView)findViewById(R.id.list);
         service = RetrofitClient.createService(Api.class);
 
+        BtnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SweetAlertDialog(MainActivity.this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Are you sure?")
+                        .setContentText("Keluar Dari Aplikasi ??")
+                        .setConfirmText("Yes!")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+                                Intent i = new Intent(MainActivity.this,Login.class);
+                                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_CEK_LOGIN,false);
+                                startActivity(i);
+                                finish();
+                            }
+                        }).setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                    }
+                })
+                        .show();
+            }
+        });
 
-//        calll = service.userlogin(getIntent().getStringExtra("email"));
-//        calll.enqueue(new Callback<List<User>>() {
-//            @Override
-//            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-//                emailuser.setText(response.body().get(0).getEmail());
-//                nameuser.setText(response.body().get(0).getName());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<User>> call, Throwable t) {
-//
-//            }
-//        });
+        emailuser.setText(email);
         SweetAlertDialog pDialog = new SweetAlertDialog(MainActivity.this,SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("Tunggu Sebentar");
@@ -87,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (!sharedPrefManager.getSPCekLogin()){
             startActivity(new Intent(getApplicationContext(),Login.class));
+            finish();
         }
 
     }

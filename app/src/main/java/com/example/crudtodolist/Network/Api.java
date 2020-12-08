@@ -48,7 +48,8 @@ public interface Api {
             @Field("start_date")String start_date,
             @Field("end_date")String end_date,
             @Field("proggress")String proggress,
-            @Field("user_id")String user_id
+            @Field("user_id")String user_id,
+            @Field("create_by")String create_by
             );
     @FormUrlEncoded
     @POST("update")
@@ -57,13 +58,15 @@ public interface Api {
             @Field("name")String name,
             @Field("start_date")String start_date,
             @Field("end_date")String end_date,
-            @Field("proggress")String proggress
+            @Field("proggress")String proggress,
+            @Field("update_by")String update_by
     );
 
     @FormUrlEncoded
     @POST("delete")
     Call<ResponseBody>delete(
-            @Field("id_todos")String id_todos
+            @Field("id_todos")String id_todos,
+            @Field("delete_by")String delete_by
     );
 
     @FormUrlEncoded

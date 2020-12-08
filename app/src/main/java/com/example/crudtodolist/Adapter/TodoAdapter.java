@@ -24,6 +24,7 @@ import com.example.crudtodolist.Network.Api;
 import com.example.crudtodolist.Network.RetrofitClient;
 import com.example.crudtodolist.R;
 import com.example.crudtodolist.Register;
+import com.example.crudtodolist.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class TodoAdapter extends BaseAdapter {
     List<Todo> list;
     Api api;
     Call<ResponseBody> call;
+    SharedPrefManager sharedPrefManager;
 
     public TodoAdapter(Context context, List<Todo> list){
         this.context = context;
@@ -66,7 +68,8 @@ public class TodoAdapter extends BaseAdapter {
             LayoutInflater inflater = LayoutInflater.from(this.context);
             convertView = inflater.inflate(R.layout.daftar_todo,null);
         }
-
+        sharedPrefManager = new SharedPrefManager(context);
+        String emailuser = sharedPrefManager.getSpEmail();
         Todo todo = list.get(position);
         TextView userid = convertView.findViewById(R.id.userid);
         TextView nama = convertView.findViewById(R.id.nama);
@@ -95,6 +98,7 @@ public class TodoAdapter extends BaseAdapter {
                i.putExtra("start",start.getText().toString());
                i.putExtra("end",end.getText().toString());
                i.putExtra("proggress",proggress.getText().toString());
+               i.putExtra("updateby",emailuser);
                context.startActivity(i);
             }
         });
@@ -102,7 +106,7 @@ public class TodoAdapter extends BaseAdapter {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                call = api.delete(idtodos.getText().toString());
+                call = api.delete(idtodos.getText().toString(),emailuser);
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

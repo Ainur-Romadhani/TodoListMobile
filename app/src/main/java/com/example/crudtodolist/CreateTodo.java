@@ -30,11 +30,14 @@ public class CreateTodo extends AppCompatActivity {
     EditText namecreate,startcreate,endcreate,proggrescreate;
     Api api;
     Call<ResponseBody> call;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_todo);
+        sharedPrefManager = new SharedPrefManager(this);
+        String emailuser = sharedPrefManager.getSpEmail();
 
         namecreate = (EditText)findViewById(R.id.namecreate);
         startcreate=(EditText)findViewById(R.id.startcreate);
@@ -102,7 +105,7 @@ public class CreateTodo extends AppCompatActivity {
                             startcreate.getText().toString(),
                             endcreate.getText().toString(),
                             proggrescreate.getText().toString(),
-                            getIntent().getStringExtra("userid"));
+                            getIntent().getStringExtra("userid"),emailuser);
                     call.enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

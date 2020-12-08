@@ -12,17 +12,19 @@ import android.widget.TextView;
 import com.example.crudtodolist.Menutodo;
 import com.example.crudtodolist.Model.User;
 import com.example.crudtodolist.R;
+import com.example.crudtodolist.SharedPrefManager;
 
 import java.util.List;
 
 public class UserAdapter extends BaseAdapter {
     Context context;
     List<User> list;
-
+    SharedPrefManager sharedPrefManager;
 
     public UserAdapter(Context context, List<User> list){
         this.context = context;
         this.list = list;
+
     }
 
     @Override
@@ -47,7 +49,8 @@ public class UserAdapter extends BaseAdapter {
             LayoutInflater inflater = LayoutInflater.from(this.context);
             convertView = inflater.inflate(R.layout.daftar_user,null);
         }
-
+        sharedPrefManager = new SharedPrefManager(context);
+        String emailuser = sharedPrefManager.getSpEmail();
         User user = list.get(position);
         Button todo = convertView.findViewById(R.id.btnTodo);
         TextView nama = convertView.findViewById(R.id.textnamauser);
