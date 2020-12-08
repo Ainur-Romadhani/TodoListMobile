@@ -29,12 +29,14 @@ public class Login extends AppCompatActivity {
     EditText email,password;
     Api api;
     Call<ResponseBody> call;
-    Prefrence Preferences;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        sharedPrefManager = new SharedPrefManager(this);
+//        sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_CEK_LOGIN,true);
 
         login = (Button)findViewById(R.id.login);
         register = (Button)findViewById(R.id.registrasi);
@@ -63,10 +65,10 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if(response.isSuccessful()){
-//                            Preferences.setLoggedInUser(getBaseContext(),Preferences.getRegisteredUser(getBaseContext()));
-//                            Preferences.setLoggedInStatus(getBaseContext(),true);
+
                             Intent i = new Intent(Login.this,MainActivity.class);
-                            i.putExtra("email",email.getText().toString());
+                            sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL,email.getText().toString());
+                            sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_CEK_LOGIN,true);
                             startActivity(i);
                             pDialog.dismiss();
                             finish();
@@ -100,10 +102,5 @@ public class Login extends AppCompatActivity {
                 });
             }
         });
-//        if (Preferences.getLoggedInStatus(getBaseContext())){
-//            startActivity(new Intent(getBaseContext(),MainActivity.class));
-//            finish();
-//        }
-
     }
 }
