@@ -106,6 +106,7 @@ public class Tong extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Todo>> call, Throwable t) {
                 Toast.makeText(Tong.this,t.getMessage(),Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
             }
         });
     }

@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CrudTodoList">
-        <activity android:name=".Tong"></activity>
+        <activity android:name=".Tong" />
         <activity android:name=".EditTodo" />
         <activity android:name=".CreateTodo" />
         <activity android:name=".Menutodo" />

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.list);
         service = RetrofitClient.createService(Api.class);
 
+
         calll = service.userlogin(getIntent().getStringExtra("email"));
         calll.enqueue(new Callback<List<User>>() {
             @Override
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
                 Log.w(TAG, t.getMessage());
+                pDialog.dismiss();
             }
         });
 

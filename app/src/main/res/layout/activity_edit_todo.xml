@@ -56,10 +56,9 @@
         android:layout_below="@+id/lable_start"
         android:layout_margin="10dp"
         android:layout_marginTop="10dp"
-        android:hint="Isi Disini"
+        android:hint="Ketuk Disini"
         android:textColorHint="@color/cardview_shadow_start_color"
-        android:id = "@+id/startedit"
-        android:inputType = "date" />
+        android:id = "@+id/startedit"/>
 
     <TextView
         android:text = "End_date"
@@ -79,10 +78,9 @@
         android:layout_below="@+id/lable_end"
         android:layout_margin="10dp"
         android:layout_marginTop="10dp"
-        android:hint="Isi Disini"
+        android:hint="Ketuk Disini"
         android:textColorHint="@color/cardview_shadow_start_color"
-        android:id = "@+id/end_dateedit"
-        android:inputType = "date" />
+        android:id = "@+id/end_dateedit"/>
 
     <TextView
         android:text = "Proggress"

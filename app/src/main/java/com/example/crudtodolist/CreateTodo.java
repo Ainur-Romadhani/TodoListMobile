@@ -2,16 +2,20 @@ package com.example.crudtodolist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.crudtodolist.Network.Api;
 import com.example.crudtodolist.Network.RetrofitClient;
 import com.tapadoo.alerter.Alerter;
+
+import java.util.Calendar;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.ResponseBody;
@@ -21,6 +25,7 @@ import retrofit2.Response;
 
 public class CreateTodo extends AppCompatActivity {
 
+    DatePickerDialog piker;
     Button submit;
     EditText namecreate,startcreate,endcreate,proggrescreate;
     Api api;
@@ -37,6 +42,44 @@ public class CreateTodo extends AppCompatActivity {
         proggrescreate=(EditText)findViewById(R.id.proggresscreate);
         submit = (Button)findViewById(R.id.submit);
         api = RetrofitClient.createService(Api.class);
+
+        startcreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+
+                piker = new DatePickerDialog(CreateTodo.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                startcreate.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
+                            }
+                        }, year, month, day);
+                piker.show();
+            }
+        });
+
+        endcreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+
+                piker = new DatePickerDialog(CreateTodo.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                endcreate.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
+                            }
+                        }, year, month, day);
+                piker.show();
+            }
+        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
